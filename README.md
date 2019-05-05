@@ -59,7 +59,7 @@ In order to activate the functionality of the library only when certain conditio
 ```javascript
 document.addEventListener("DOMContentLoaded", function() {
     var fps = new FullPageScroll('wrap', {
-			mediaQuery: 'screen and (min-width: 800px)',
+        mediaQuery: 'screen and (min-width: 800px)',
     });
 });
 ```
