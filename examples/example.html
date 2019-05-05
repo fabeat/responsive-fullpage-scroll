@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Responsive FullPageScroll</title>
+<style>
+body {
+	margin: 0;
+}
+
+#wrap {
+	position: relative;
+	overflow: hidden;
+  background: darkblue;
+}
+
+section {
+	box-sizing: border-box;
+	position: relative;
+	height: 100vh;
+	overflow: hidden;
+	font-size: 10vmin;
+	padding: 1em;
+	color: hsla(0, 0%, 100%, .8);
+}
+    </style>
+</head>
+<body translate="no">
+  <div id="wrap">
+  	<section>one</section>
+  	<section>two</section>
+  	<section>three</section>
+  	<section>four</section>
+  	<section>five</section>
+  	<section>six <a href="#" class="top">top</a></section>
+  </div>
+<script src="../dist/scroll.js"></script>
+<script> 
+  document.addEventListener("DOMContentLoaded", function() {
+		var fps = new FullPageScroll('wrap', { 
+			mediaQuery: 'screen and (min-width: 800px)',
+			goToTopOnLast: false
+		});
+		fps.onslide = function(e) {
+			console.log("Slide "+(e.target.currentSlide+1)+" of "+e.target.slides.length);
+		}
+    document.querySelectorAll('a.top').forEach(function(el){
+      el.addEventListener('click', function(event) {
+        event.preventDefault();
+        fps.goToFirstSlide();
+      });
+    });
+  });
+</script>
+</body>
+</html>

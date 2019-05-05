@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FullPageScroll</title>
+<style>
+body {
+    margin: 0;
+}
+#wrap {
+	position: relative;
+	overflow: hidden;
+}
+section {
+	box-sizing: border-box;
+	position: relative;
+	height: 100vh;
+	overflow: hidden;
+	font-size: 10vmin;
+	padding: 1em;
+}
+</style>
+</head>
+<body translate="no">
+  <div id="wrap">
+  	<section>one</section>
+  	<section>two</section>
+  	<section>three</section>
+  </div>
+<script src="../dist/scroll.js"></script>
+<script> 
+  document.addEventListener("DOMContentLoaded", function() {
+		var fps = new FullPageScroll('wrap');
+  });
+</script>
+</body>
+</html>
