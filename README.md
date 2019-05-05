@@ -2,6 +2,8 @@
 
 This library provides a full page slideshow that can be activated and deactivated using a media query.
 
+[Download fullpage-scroll.js](https://raw.githubusercontent.com/fabeat/responsive-fullpage-scroll/master/dist/fullpage-scroll.js)
+
 ## Basic Usage
 
 ### 1) Add some Markup
