@@ -50,7 +50,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 ```
 
+## Examples
+
 For working examples, have a look at the **examples** folder.
+
+Some more examples on CodePen:
+
+* [Example with clickable dots indicating the current slide](https://codepen.io/fabeat/pen/EzxEGe)
 
 ## Adding a media query
 
@@ -119,5 +125,59 @@ The `slide` event is fired when the user scrolls or swipes and a new slide is sh
 ### `activate` / `deactivate`
 
 The `activate` and `deactivate` events are useful in conjunction with the defined media query.
+
+## Properties of `FullPageScroll`
+
+### `wrapperElement`
+
+The HTML wrapper element configured in the constructor.
+
+Type: `HTMLElement`
+    
+### `mediaQueryList`
+
+Evaluated media query.
+
+Type: `MediaQueryList`
+
+### `currentSlide`
+
+Index of current slide (begins with `0`).
+
+Type: `number`
+
+### `isActive`
+
+Whether the slideshow is active.
+
+Type: `boolean`
+
+### `slides` (readonly)
+
+List of the slides.
+
+Type: `NodeListOf<HTMLElement>`
+
+### `options` (readonly)
+
+Object of options.
+
+## Methods of `FullPageScroll`
+
+### `goToSlide(num: number)`
+
+Go to the slide indicated by `num` (slide index, beginning with `0`)
+
+### `goToFirstSlide()`
+
+Scroll to the first slide. Equivalent of `goToSlide(0)`.
+
+### `nextSlide()`
+
+Scroll to next slide. 
+
+### `previousSlide()`
+
+Scroll to previous slide. 
 
 
