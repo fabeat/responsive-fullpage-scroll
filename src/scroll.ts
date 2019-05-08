@@ -1,16 +1,17 @@
 "use strict";
 
 import {SwipeOptions, SwipeEventHandler} from './event-handler/swipe';
-import {ScrollEventHandler} from './event-handler/scroll';
+import {WheelOptions, ScrollEventHandler} from './event-handler/scroll';
 import {MatchMediaEventHandler} from './event-handler/match-media';
 import {EventTarget, defineEventAttribute} from "event-target-shim"
 
-interface ScrollOptions {
+export interface ScrollOptions {
     transitionTime?: number,
     goToTopOnLast?: boolean,
     mediaQuery?: string,
     slideSelector?: string,
-    swipeOptions?: SwipeOptions
+    swipeOptions?: SwipeOptions,
+    wheelOptions?: WheelOptions
 }
 
 export const defaultScrollOptions:ScrollOptions = {
@@ -18,7 +19,7 @@ export const defaultScrollOptions:ScrollOptions = {
     goToTopOnLast: true,
     mediaQuery: "screen",
     slideSelector: "section"
-}
+};
 
 export class FullPageScroll extends EventTarget{
     wrapperElement: HTMLElement;
@@ -58,7 +59,7 @@ export class FullPageScroll extends EventTarget{
         this.slides = this.wrapperElement.querySelectorAll(this.options.slideSelector);
         this.matchMediaEventHandler = new MatchMediaEventHandler(this.mediaQueryList, this.addStylesAndEvents, this.removeStylesAndEvents);
         this.swipeEventHandler = new SwipeEventHandler(this.wrapperElement, this.nextSlide, this.previousSlide, this.options.swipeOptions);
-        this.scrollEventHandler = new ScrollEventHandler(this.wrapperElement, this.nextSlide, this.previousSlide);
+        this.scrollEventHandler = new ScrollEventHandler(this.wrapperElement, this.nextSlide, this.previousSlide, this.options.wheelOptions);
         if (this.mediaQueryList.matches) {
             this.addStylesAndEvents();
         }
