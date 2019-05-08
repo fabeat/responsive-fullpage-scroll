@@ -17,6 +17,7 @@ export class ScrollEventHandler implements SlideEventHandlerInterface{
     previousCallback: Function;
     options: WheelOptions;
     private lastCall: number;
+    private lastDelta: number;
 
     constructor(target: EventTarget, nextCallback: Function, previousCallback: Function, options?: WheelOptions) {
         this.target = target;
@@ -37,18 +38,22 @@ export class ScrollEventHandler implements SlideEventHandlerInterface{
     };
 
     private wheelEventHandler = (event: WheelEvent) => {
+        // has the user changed the scroll direction? => no pause necessary
+        let currentDelta = event.deltaY;
+        let deltaChange = (currentDelta > 0 && this.lastDelta < 0) || (currentDelta < 0 && this.lastDelta > 0);
+        this.lastDelta = currentDelta;
         let time = new Date().getTime();
         // The scroll event has to pause for at least options.newScrollThreshold.
         let diff = time-this.lastCall;
         this.lastCall = time;
-        if (diff < this.options.newScrollThreshold) {
+        if (!deltaChange && diff < this.options.newScrollThreshold) {
             return;
         }
         event.stopPropagation();
-        if (event.deltaY < 0) {
+        if (currentDelta < 0) {
             this.previousCallback();
         }
-        if (event.deltaY > 0) {
+        if (currentDelta > 0) {
             this.nextCallback();
         }
     };
